@@ -9,7 +9,7 @@
         Add a new post
       </button>
       <!-- Modal -->
-      <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+      <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -17,26 +17,27 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
               <div class="modal-body">
-                <form action="/insert_board" method="post">
+                <form action="/insert_post" method="post">
                   <div class="pb-2">
                     <label for="title_box">Title</label>
-                    <input class="w-100" type="text" id="title_box" name="query_title">
+                    <input class="w-100 form-control" type="text" id="title_box" name="query_title">
                   </div>
 
                   <div class="pb-1">
                     <label for="body_box">Body</label>
-                    <textarea class="w-100" id="body_box" name="query_body" rows="3"></textarea>
+                    <textarea class="w-100 form-control" id="body_box" name="query_body" rows="3"></textarea>
                   </div>
                   
                   <div class="pb-3">
                     <label for="expires_on_box">Expires on</label>
-                    <input class="w-100 p-2" type="date" id="expires_on_box" name="query_expires_on">
+                    <input class="w-100 p-2 form-control" type="date" id="expires_on_box" name="query_expires_on">
                   </div>
 
-                <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
+                  <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
 
-                <button type="button" class="btn btn-primary w-100">Add post</button>
+                  <button type="submit" class="btn btn-primary w-100">Add post</button>
               </div>
+              </form>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               </div>
