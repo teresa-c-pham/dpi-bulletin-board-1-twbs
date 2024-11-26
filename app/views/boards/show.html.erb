@@ -34,7 +34,6 @@
                   </div>
 
                   <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
-
                   <button type="submit" class="btn btn-primary w-100">Add post</button>
               </div>
               </form>
@@ -51,37 +50,38 @@
 
 <ul class="nav nav-tabs p-3 nav-fill">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active posts</a>
+    <a class="nav-link active" aria-current="page" href="#">Active posts (<%= @active_posts.length%>)</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#">Expired posts</a>
+    <a class="nav-link" href="#">Expired posts (<%= @expired_posts.length%>)</a>
   </li>
 </ul>
 
 <div class="container">
-  <div class="col">
-  <% @active_posts.each do |a_post| %>
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h6 class="card-title"><%= a_post.title %></h6>
-          <p class="card-text">Expires on <%= a_post.expires_on.strftime("%b %e, %Y") %></p>
-        </div>
-
-        <div class="list-group list-group-flush">
-          <div class="list-group-item">
-            <%= a_post.body %>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @active_posts.each do |a_post| %>
+      <div class="col">
+        <div class="card col">
+          <div class="card-header">
+            <h6><%= a_post.title %></h6>
+            <div>Expires on <%= a_post.expires_on.strftime("%b %e, %Y") %></div>
           </div>
-          <div class="list-group-item">
-            Posted on <%= a_post.created_at.strftime("%b %e, %Y") %>
+
+          <div class="list-group list-group-flush">
+            <div class="list-group-item">
+              <%= a_post.body %>
+            </div>
+            <div class="card-footer">
+              Posted on <%= a_post.created_at.strftime("%b %e, %Y") %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %> 
+    <% end %> 
   </div>
 </div>
+
 
 
 <div class="container">
