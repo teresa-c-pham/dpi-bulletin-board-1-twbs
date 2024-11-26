@@ -48,44 +48,60 @@
   </div>
 </div>
 
-<hr>
+<ul class="nav nav-tabs p-3 nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active posts</a>
+  </li>
 
-<h2>Active posts</h2>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Expired posts</a>
+  </li>
+</ul>
 
-<table border="1">
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Posted on</th>
-    <th>Expires on</th>
-  </tr>
-
+<div class="container">
+  <div class="col">
   <% @active_posts.each do |a_post| %>
-    <tr>
-      <td><%= a_post.title %></td>
-      <td><%= a_post.body %></td>
-      <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
-      <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
-    </tr>
-  <% end %>
-</table>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title"><%= a_post.title %></h6>
+          <p class="card-text">Expires on <%= a_post.expires_on.strftime("%b %e, %Y") %></p>
+        </div>
 
-<h2>Expired posts</h2>
+        <div class="list-group list-group-flush">
+          <div class="list-group-item">
+            <%= a_post.body %>
+          </div>
+          <div class="list-group-item">
+            Posted on <%= a_post.created_at.strftime("%b %e, %Y") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+  </div>
+</div>
 
-<table border="1">
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Posted on</th>
-    <th>Expired on</th>
-  </tr>
 
-  <% @expired_posts.each do |a_post| %>
-    <tr>
-      <td><%= a_post.title %></td>
-      <td><%= a_post.body %></td>
-      <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
-      <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+        <th scope="col">Posted on</th>
+        <th scope="col">Expired on</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expired_posts.each do |a_post| %>
+        <tr>
+          <td><%= a_post.title %></td>
+          <td><%= a_post.body %></td>
+          <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
+          <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
+        </tr>
+      <% end %> 
+    </tbody>
+  </table>
+</div>
