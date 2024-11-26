@@ -1,43 +1,51 @@
-<div>
-  <div>
-    <h1>
-      All boards
-    </h1>
-  </div>
-</div>
 
-<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header d-flex">
+          <h6>All boards</h6>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-success ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add a new board
+          </button>
 
-<div>
-  <div>
-    <h2>
-      Add a new board
-    </h2>
-
-    <form action="/insert_board" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">New board</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                  <div class="modal-body">
+                    <form action="/insert_board" method="post">
+                        <label for="name_box">
+                          Name
+                        </label>
+                      <div class="py-3">
+                        <input class="w-100" type="text" id="name_box" name="query_name">
+                      </div>
+                    <button type="button" class="btn btn-success w-100">Add board</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="list-group list-group-flush">
+          <% @list_of_boards.each do |a_board| %>
+            <a class="list-group-item list-group-item-action d-flex link-underline-light text-black" href="/boards/<%= a_board.id %>">
+              <%= a_board.name %>
+              <div class="ms-auto">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </a>
+        <% end %>
+        </div>
       </div>
-
-      <button>
-        Add board
-      </button>
-    </form>
+    </div>
   </div>
 </div>
-
-<hr>
-
-<ul>
-  <% @list_of_boards.each do |a_board| %>
-    <li>
-      <a href="/boards/<%= a_board.id %>">
-        <%= a_board.name %>
-      </a>
-    </li>
-  <% end %>
-</ul>
